@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="page1" class="page active">
+            <h1>Hey Swagat's Favorite Person...</h1>
+            <p>I have something important to ask you.</p>
+            <button class="btn" onclick="nextPage(2)">What is it? &rarr;</button>
+        </div>
+
+        <div id="page2" class="page">
+            <h1>Look at us! ❤️</h1>
+            <p>From Roblox dates to cooking together, we have the best memories...</p>
+            
+            <div class="gallery-container">
+                <div class="gallery">
+                    <div class="photo-frame"><img src="Screenshot_2026-01-27_212227.jpg" alt="Roblox Date"></div>
+                    <div class="photo-frame"><img src="IMG-20260102-WA0026.jpg" alt="Cooking"></div>
+                    <div class="photo-frame"><img src="IMG-20260102-WA0054.jpg" alt="Cuddling"></div>
+                    <div class="photo-frame"><img src="IMG_9352.jpg" alt="Formal Wear"></div>
+                    <div class="photo-frame"><img src="IMG-20260102-WA0057.jpg" alt="Smile"></div>
+                    <div class="photo-frame"><img src="IMG_20260105_001102_729.jpg" alt="Mirror Selfie Green"></div>
+                    <div class="photo-frame"><img src="IMG-20251231-WA0077.jpg" alt="Fancy Mirror"></div>
+                    <div class="photo-frame"><img src="IMG_8792.jpg" alt="Sunglasses"></div>
+                    <div class="photo-frame"><img src="IMG_8742.jpg" alt="Selfie"></div>
+                    <div class="photo-frame"><img src="IMG_7988.jpg" alt="Camera Screen"></div>
+                    <div class="photo-frame"><img src="IMG_7985.jpg" alt="Earmuffs"></div>
+                    <div class="photo-frame"><img src="IMG_8911.jpg" alt="Close up"></div>
+                    <div class="photo-frame"><img src="IMG-20251231-WA0048.jpg" alt="Umbrella"></div>
+                    <div class="photo-frame"><img src="IMG_7490.jpg" alt="Hiding Face"></div>
+                    <div class="photo-frame"><img src="2023-11-12 16_29_19.389.jpg" alt="Rangoli"></div>
+                    <div class="photo-frame"><img src="IMG_7117.jpg" alt="Night Blur"></div>
+                </div>
+            </div>
+
+            <p>(Scroll to see more!)</p>
+            <button class="btn" onclick="nextPage(3)">Continue &rarr;</button>
+        </div>
+
+        <div id="page3" class="page">
+            <h1>So I have to ask...</h1>
+            <p>Will you be my Valentine?</p>
+            <div class="btn-group">
+                <button class="btn yes-btn" onclick="nextPage(4)">YES! ❤️</button>
+                <button id="noBtn" class="btn no-btn" onmouseover="moveButton()">No</button>
+            </div>
+        </div>
+
+        <div id="page4" class="page">
+            <h1>Yay!!! ❤️</h1>
+            <p>I can't wait to celebrate with you!</p>
+            <div class="emojis">🥰 🌹 🍫</div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
