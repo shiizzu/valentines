@@ -3,7 +3,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Verdana', sans-serif;
-    background-color: #ffe6e6;
+    
+    /* BACKGROUND: Cute Animals Pattern */
+    background-color: #ffe6e6; /* Pink base */
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='35' font-size='25'%3E🦭%3C/text%3E%3Ctext x='50' y='85' font-size='25'%3E🐶%3C/text%3E%3Ctext x='85' y='35' font-size='25'%3E🐱%3C/text%3E%3C/svg%3E");
+    background-size: 120px 120px; /* Size of the pattern repeating */
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,13 +20,21 @@ body {
 .container {
     position: relative;
     width: 100%;
-    max-width: 800px; /* Made slightly wider to fit more photos */
+    max-width: 800px;
+    padding: 20px;
 }
 
-/* PAGES */
+/* PAGES / SECTIONS */
 .page {
     display: none;
     animation: fadeIn 0.8s ease-in-out;
+    
+    /* GLASS EFFECT: Makes text readable over the animals */
+    background: rgba(255, 255, 255, 0.85); /* 85% opacity white */
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    backdrop-filter: blur(5px); /* Blurs the animals behind the box */
 }
 
 .page.active {
@@ -40,119 +53,5 @@ p {
     color: #555;
     font-size: 1.2rem;
     margin-bottom: 25px;
-}
-
-/* SCROLLABLE GALLERY */
-.gallery-container {
-    width: 100%;
-    overflow-x: auto;
-    padding: 20px 0;
-    margin-bottom: 20px;
-    /* Smooth scrolling behavior */
-    scroll-behavior: smooth; 
-    /* Hide scrollbar */
-    scrollbar-width: none; 
-    -ms-overflow-style: none;
-}
-
-.gallery-container::-webkit-scrollbar {
-    display: none;
-}
-
-.gallery {
-    display: flex;
-    gap: 20px;
-    padding: 0 40px; /* Padding on sides so first/last image aren't cut off */
-    width: max-content;
-}
-
-.photo-frame {
-    /* Adjusted size for better quality */
-    height: 300px; 
-    min-width: 220px; /* Ensures vertical photos don't get too skinny */
-    border: 8px solid white;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    overflow: hidden;
-    background-color: #fff;
-    transition: transform 0.3s ease;
-    
-    /* Alternating tilts for a "scrapbook" feel */
-    transform: rotate(-2deg);
-}
-
-.photo-frame:nth-child(even) {
-    transform: rotate(2deg);
-}
-
-.photo-frame:hover {
-    transform: scale(1.05) rotate(0deg);
-    z-index: 10;
-    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-}
-
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* This creates the high-quality crop */
-}
-
-/* BUTTONS */
-.btn {
-    padding: 15px 35px;
-    font-size: 1.3rem;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 10px;
-    font-weight: bold;
-}
-
-.yes-btn, .btn {
-    background-color: #ff4d4d;
-    color: white;
-    box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
-}
-
-.btn:hover {
-    transform: scale(1.1);
-    background-color: #e60000;
-}
-
-.no-btn {
-    background-color: #e0e0e0;
-    color: #333;
-    position: relative;
-}
-
-/* ANIMATIONS */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Floating Hearts */
-.heart {
-    position: absolute;
-    color: #ff4d4d;
-    animation: floatUp 4s linear infinite;
-    top: 100vh;
-    font-size: 2rem;
-    z-index: 100;
-}
-
-@keyframes floatUp {
-    0% { transform: translateY(0) scale(0.5); opacity: 1; }
-    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
-}
-
-.emojis {
-    font-size: 5rem;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    font-weight: 500;
 }
