@@ -4,14 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Valentine</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ============================
+           CSS STYLES (Previously in style.css)
+           ============================ */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Verdana', sans-serif;
+            /* Cute Animal Pattern Background */
+            background-color: #ffe6e6;
+            background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='35' font-size='25'%3E🦭%3C/text%3E%3Ctext x='50' y='85' font-size='25'%3E🐶%3C/text%3E%3Ctext x='85' y='35' font-size='25'%3E🐱%3C/text%3E%3C/svg%3E");
+            background-size: 120px 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* ROSE CANVAS */
+        #roseCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Above background, below text */
+            pointer-events: none; /* Let clicks pass through */
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            z-index: 10; /* Text sits on top */
+        }
+
+        .page {
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.8s ease-in-out;
+            background: rgba(255, 255, 255, 0.9); /* Glass effect */
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .page.active {
+            display: block; /* Show active page */
+        }
+
+        h1 {
+            color: #ff4d4d;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        p {
+            color: #555;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* GALLERY STYLES */
+        .gallery-container {
+            width: 100%;
+            overflow-x: auto;
+            padding: 20px 0;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+        .gallery-container::-webkit-scrollbar { display: none; }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            padding: 0 10px;
+            width: max-content;
+        }
+
+        .photo-frame {
+            height: 250px;
+            min-width: 180px;
+            border: 6px solid white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            background-color: #fff;
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+        }
+        .photo-frame:nth-child(even) { transform: rotate(2deg); }
+        .photo-frame:hover { transform: scale(1.05) rotate(0deg); z-index: 10; }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* BUTTONS */
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            font-weight: bold;
+            background-color: #ff4d4d;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+        }
+        .btn:hover { transform: scale(1.1); background-color: #e60000; }
+        .no-btn { background-color: #e0e0e0; color: #333; position: relative; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .emojis { font-size: 4rem; animation: bounce 2s infinite; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
 </head>
 <body>
 
     <canvas id="roseCanvas"></canvas>
 
     <div class="container">
-        
         <div id="page1" class="page active">
             <h1>🥰🥰BUBAAAAAAA!!!!!🥰🥰</h1>
             <p>🥶🥶I have something important to ask you.🥶🥶</p>
@@ -21,7 +145,6 @@
         <div id="page2" class="page">
             <h1>Look at us! ❤️</h1>
             <p>I love you soo soo much. I hope we spend the rest of our lives together.💋</p>
-            
             <div class="gallery-container">
                 <div class="gallery">
                     <div class="photo-frame"><img src="IMG-20260102-WA0054.jpg" alt="Memory"></div>
@@ -40,7 +163,6 @@
                     <div class="photo-frame"><img src="IMG_7117.jpg" alt="Memory"></div>
                 </div>
             </div>
-
             <p>(Scroll to see more!)</p>
             <button class="btn" onclick="nextPage(3)">Thicha &rarr;</button>
         </div>
@@ -49,3 +171,94 @@
             <h1>Soooooooo........Major Question Chai k Ho bhaneee....</h1>
             <p>WILL YOU BE MY VALENTINESS BABE</p>
             <div class="btn-group">
+                <button class="btn yes-btn" onclick="nextPage(4)">YES! ❤️</button>
+                <button id="noBtn" class="btn no-btn" onmouseover="moveButton()">No</button>
+            </div>
+        </div>
+
+        <div id="page4" class="page">
+            <h1>YaYYYYYYY!!! ❤️</h1>
+            <p>WUHUUUUUUU!!!!!</p>
+            <div class="emojis">🥰 🌹 🍫</div>
+        </div>
+    </div>
+
+    <script>
+        // 1. BUTTON LOGIC (Works immediately)
+        function nextPage(pageNumber) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const activePage = document.getElementById(`page${pageNumber}`);
+            if (activePage) activePage.classList.add('active');
+        }
+
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const maxWidth = window.innerWidth - 150;
+            const maxHeight = window.innerHeight - 100;
+            const randomX = Math.floor(Math.random() * maxWidth);
+            const randomY = Math.floor(Math.random() * maxHeight);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // 2. ROSE ANIMATION (Safe mode)
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('roseCanvas');
+            if (!canvas) return; // Stop if no canvas
+
+            const ctx = canvas.getContext('2d');
+            let width, height, roses = [];
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            // Create Rose Class
+            class Rose {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * -height;
+                    this.size = Math.random() * 20 + 20;
+                    this.speedY = Math.random() * 1.5 + 0.5;
+                    this.rotation = Math.random() * 360;
+                    this.rotationSpeed = Math.random() * 2 - 1;
+                }
+                update() {
+                    this.y += this.speedY;
+                    this.rotation += this.rotationSpeed;
+                    if (this.y > height) { // Reset to top
+                        this.y = -50;
+                        this.x = Math.random() * width;
+                    }
+                }
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation * Math.PI / 180);
+                    ctx.font = `${this.size}px serif`;
+                    ctx.fillText('🌹', -this.size/2, this.size/2);
+                    ctx.restore();
+                }
+            }
+
+            // Start Animation
+            for (let i = 0; i < 40; i++) roses.push(new Rose());
+            
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                roses.forEach(rose => { rose.update(); rose.draw(); });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        });
+    </script>
+</body>
+</html>
